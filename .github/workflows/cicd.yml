@@ -10,13 +10,13 @@ jobs:
         run: | # смотрим путь к каталогу и что лежит в каталоге
           pwd
           ls -a
-      #- uses: actions/checkout@v4 # копируем репозиторий чекаутом
-      - name: Copy Files
-        run: | # если список команд, то используем этот символ ( | ) копируем с помощью гит команд
-          git init
-          git remote add origin "https://$GITHUB_ACTOR:${{secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
-          git fetch origin
-          git checkout main
+      - uses: actions/checkout@v4 # копируем репозиторий чекаутом
+#      - name: Copy Files
+#        run: | # если список команд, то используем этот символ ( | ) копируем с помощью гит команд
+#          git init
+#          git remote add origin "https://$GITHUB_ACTOR:${{secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
+#          git fetch origin
+#          git checkout main
       - name: New List Files
         run:
           ls -a
