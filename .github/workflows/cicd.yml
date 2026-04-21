@@ -1,0 +1,16 @@
+# деплой ci/cd
+
+name: CI/CD
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Git clone repo
+      - uses: actions/checkout@v4 # копируем репозиторий чекаутом
+      - name: List Files
+        run: | # смотрим путь к каталогу и что лежит в каталоге
+          pwd
+          ls -a
