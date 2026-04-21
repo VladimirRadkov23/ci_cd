@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Git clone repo
-      - uses: actions/checkout@v4 # копируем репозиторий чекаутом
+      #- uses: actions/checkout@v4 # копируем репозиторий чекаутом
       - name: List Files
         run: | # смотрим путь к каталогу и что лежит в каталоге
           pwd
