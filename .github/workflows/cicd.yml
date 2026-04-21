@@ -7,11 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Copy Files
-        run: echo "Some text"
+#        run: echo "Some text"
 
       - uses: actions/checkout@v4 # копируем репозиторий чекаутом
-#        run:
-#          ls -a
+      - name: List Files
+        run:
+          ls -a
 
 
 
