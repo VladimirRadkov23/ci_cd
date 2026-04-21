@@ -1,32 +1,32 @@
-#name: CI/CD
-#on: push
-#
-#jobs:
-#  build:
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Git clone repo
-#      - uses: actions/checkout@v4 # копируем репозиторий чекаутом
-#      - name: List Files
-#        run: | # смотрим путь к каталогу и что лежит в каталоге
-#          pwd
-#          ls -a
-
-
-
-# start
-name: First Workflow
-on: [push] #  квадратные скобки нужны,если запускаются несколько ивентов
-#on: workflow_dispatch
+name: CI/CD
+on: push
 
 jobs:
-  run-first-command:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Display some Asd
-        run: echo "Some text"
-      - name: Display new Qwerty
-        run: |
-          node -v
-          npm -v
+      - name: Git clone repo
+      - uses: actions/checkout@v4 # копируем репозиторий чекаутом
+      - name: List Files
+        run: | # смотрим путь к каталогу и что лежит в каталоге
+          pwd
+          ls -a
+
+
+
+
+#name: First Workflow
+#on: [push] #  квадратные скобки нужны,если запускаются несколько ивентов
+##on: workflow_dispatch
+#
+#jobs:
+#  run-first-command:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Display some Asd
+#        run: echo "Some text"
+#      - name: Display new Qwerty
+#        run: |
+#          node -v
+#          npm -v
