@@ -1,34 +1,35 @@
 name: CI/CD
 on: push
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
 
+jobs:
+  run-my-command:
+    runs-on: ubuntu-latest
     steps:
-      - name: Git clone repo
-      - uses: actions/checkout@v4 # копируем репозиторий чекаутом
+      - name: List Files
         run: | # смотрим путь к каталогу и что лежит в каталоге
           pwd
           ls -a
-      - name: List Files
-        run: echo "Some text"
+      #- uses: actions/checkout@v4 # копируем репозиторий чекаутом
+      - name: Copy Files
+        run: | # если список команд, то используем этот символ ( | ) копируем с помощью гит команд
+          git init
+          git remote add origin "https://$GITHUB_ACTOR:${{secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
+          git fetch origin
+          git checkout main
+      - name: New List Files
+        run:
+          ls -a
 
 
-
-
-
-#name: First Workflow
-#on: [push] #  квадратные скобки нужны,если запускаются несколько ивентов
-##on: workflow_dispatch
-#
 #jobs:
-#  run-first-command:
+#  build:
 #    runs-on: ubuntu-latest
+#
 #    steps:
-#      - name: Display some Asd
-#        run: echo "Some text"
-#      - name: Display new Qwerty
-#        run: |
-#          node -v
-#          npm -v
+#      - name: Git clone repo
+#      - uses: actions/checkout@v4 # копируем репозиторий чекаутом
+#        run: | # смотрим путь к каталогу и что лежит в каталоге
+#          pwd
+#          ls -a
+
