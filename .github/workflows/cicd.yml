@@ -10,8 +10,8 @@ jobs:
         run: echo "Some text"
 
       - uses: actions/checkout@v4 # копируем репозиторий чекаутом
-        run:
-          ls -a
+#        run:
+#          ls -a
 
 
 
