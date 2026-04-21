@@ -7,21 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Copy Files
-        run: echo "Some text"
       - uses: actions/checkout@v4 # копируем репозиторий чекаутом
-      - name: New List Files
         run:
           ls -a
 
 
-#jobs:
-#  build:
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Git clone repo
-#      - uses: actions/checkout@v4 # копируем репозиторий чекаутом
-#        run: | # смотрим путь к каталогу и что лежит в каталоге
-#          pwd
-#          ls -a
+
 
