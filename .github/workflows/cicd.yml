@@ -7,12 +7,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Copy Files
-#        run: echo "Some text"
+        run: echo "Some text"
 
       - uses: actions/checkout@v4 # копируем репозиторий чекаутом
       - name: List Files
         run:
           ls -a
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 12
+          cache: 'npm'
 
 
 
