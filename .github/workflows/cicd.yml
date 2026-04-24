@@ -1,7 +1,6 @@
 name: CI/CD
 on: push
 
-
 jobs:
   run-my-command:
     runs-on: ubuntu-latest
@@ -13,8 +12,8 @@ jobs:
       - name: List Files
         run:
           ls -a
-      - name: Setup Node.js environment
-        run: pip install -r requirements.txt
+      - name: Install requirements
+        run: pip install -r requirements.txt  # python -m pip install -r requirements.txt
 
 
 
