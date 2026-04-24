@@ -1,20 +1,39 @@
-name: CI/CD
-on: push
+#name: CI/CD
+#on: push
+#
+#jobs:
+#  run-my-command:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Copy Files
+#        run: echo "Some text"
+#
+#      - uses: actions/checkout@v4 # копируем репозиторий чекаутом
+#      - name: List Files
+#        run:
+#          ls -a
+#      - name: Install requirements
+#        run: pip install -r requirements.txt  # python -m pip install -r requirements.txt
+
+
+name: Lint Python Code
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+  workflow_dispatch:
 
 jobs:
-  run-my-command:
+  lint: # The name of the job
     runs-on: ubuntu-latest
     steps:
-      - name: Copy Files
-        run: echo "Some text"
-
-      - uses: actions/checkout@v4 # копируем репозиторий чекаутом
-      - name: List Files
-        run:
-          ls -a
-      - name: Install requirements
-        run: pip install -r requirements.txt  # python -m pip install -r requirements.txt
-
-
-
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: "pip"
 
