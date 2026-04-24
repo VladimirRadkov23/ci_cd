@@ -1,4 +1,4 @@
-from sqlalchemy import Constraint, Nullable
+# from sqlalchemy import Constraint, Nullable
 
 from . app import db
 from typing import Dict, Any
