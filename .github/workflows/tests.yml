@@ -1,0 +1,14 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_call:
+  workflow_dispatch:
+  steps:
+    - name: Display some Asd
+      run: echo "Some text"

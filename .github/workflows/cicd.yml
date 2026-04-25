@@ -1,47 +1,29 @@
-#name: CI/CD
-#on: push
-#
-#jobs:
-#  run-my-command:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Copy Files
-#        run: echo "Some text"
-#
-#      - uses: actions/checkout@v4 # копируем репозиторий чекаутом
-#      - name: List Files
-#        run:
-#          ls -a
-#      - name: Install requirements
-#        run: pip install -r requirements.txt  # python -m pip install -r requirements.txt
-
-
 name: Lint Python Code
 
-on:
-  pull_request:
-    branches:
-      - main
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+on: push
 
 jobs:
-  lint: # The name of the job
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install requirements
-        run: pip install -r requirements.txt
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-          cache: "pip"
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install ruff
+  call-workflow:
+    uses: ./.github/workflows/tests.yml
 
-      - name: Run Ruff
-        run: ruff check --output-format=github
+    steps:
+      - name: Display some Asd
+        run: echo "Some text"
+
+#jobs:
+#  lint: # The name of the job
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#      - name: Install requirements
+#        run: pip install -r requirements.txt
+#      - uses: actions/setup-python@v5
+#        with:
+#          python-version: "3.13"
+#          cache: "pip"
+#      - name: Install dependencies
+#        run: |
+#          python -m pip install --upgrade pip
+#          python -m pip install ruff
+#      - name: Run Ruff  #проверяем код линтером
+#        run: ruff check --output-format=github
