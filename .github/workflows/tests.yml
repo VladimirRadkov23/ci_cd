@@ -1,19 +1,19 @@
 name: Reusable Workflow
 on:
   workflow_call:     # запускается другим workflow
-    inputs:
-      title:
-        description: " Custom Title"
-        type: string
-        default: "Testing text title"
-        required: false
-    outputs:
-      date:
-        value: ${{ jobs.generate-output.outputs.date }} # вытаскиваем значение из джоба
+#    inputs:
+#      title:
+#        description: " Custom Title"
+#        type: string
+#        default: "Testing text title"
+#        required: false
+#    outputs:
+#      date:
+#        value: ${{ jobs.generate-output.outputs.date }} # вытаскиваем значение из джоба
 
 jobs:
   console-log:
     runs-on: ubuntu-latest
     steps:
       - name: Print Title
-        run: echo '${{ inputs.title }}'
+        run: echo 'test Asd'
