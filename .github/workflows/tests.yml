@@ -1,15 +1,6 @@
 name: Reusable Workflow
 on:
   workflow_call:     # запускается другим workflow
-#    inputs:
-#      title:
-#        description: " Custom Title"
-#        type: string
-#        default: "Testing text title"
-#        required: false
-#    outputs:
-#      date:
-#        value: ${{ jobs.generate-output.outputs.date }} # вытаскиваем значение из джоба
 
 jobs:
   console-log:
@@ -17,3 +8,11 @@ jobs:
     steps:
       - name: Print Title
         run: echo 'test Asd'
+      - uses: actions/checkout@v4
+      - name: Install requirements
+        run: pip install -r requirements.txt
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: new Title
+        run: echo 'new Asd'
