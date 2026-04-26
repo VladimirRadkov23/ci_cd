@@ -10,7 +10,7 @@ def test_route_status(client, route):
 
 def test_client_id(client) -> None:
     resp = client.get("/clients/1")
-    assert resp.json == {"id": 1, "name": "In", "surname": "Smirnova",
+    assert resp.json == {"id": 1, "name": "Inna", "surname": "Smirnova",
                          "credit_card": 12345, "car_number": "a123aa78"}
 
 
