@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from typing import List
 from datetime import datetime
 
-
 db = SQLAlchemy()
 
 
