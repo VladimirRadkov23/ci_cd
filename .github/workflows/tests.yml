@@ -19,3 +19,6 @@ jobs:
 
       - name: Run Pytest
         run: pytest
+        
+      - name: Run mypy  #проверяем код линтером
+        run: mypy main/
