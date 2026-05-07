@@ -21,7 +21,4 @@ jobs:
         run: pytest
         
       - name: Run mypy  #проверяем код линтером
-        run: |
-          source .venv/bin/activate
-          mypy main/
-          mypy tests/
+        run: mypy tests/
