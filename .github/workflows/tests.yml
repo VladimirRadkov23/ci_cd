@@ -9,7 +9,9 @@ jobs:
       - name: Print Title
         run: echo 'test Asd'
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: set up python
+        id: setup-python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.13"
 
@@ -24,6 +26,9 @@ jobs:
       - name: Load cached
         id: cached-poetry-dependencies
         uses: actions/cache@v4
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
           
       - name: Install requirements
         run: pip install -r requirements.txt
