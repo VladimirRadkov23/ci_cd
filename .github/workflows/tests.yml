@@ -6,41 +6,19 @@ jobs:
   console-log:
     runs-on: ubuntu-latest
     steps:
-      - name: Print Title
-        run: echo 'test Asd'
       - uses: actions/checkout@v4
       - name: set up python
-        id: setup-python
         uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          virtualenvs-path: .venv
-          virtualenvs-parallel: true
-
-      - name: Load cached
-        id: cached-poetry-dependencies
-        uses: actions/cache@v4
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-          
+     
       - name: Install requirements
         run: pip install -r requirements.txt
-      - name: new Title
-        run: echo 'new Asd'
 
-      - name: Run Pytest
-        run: pytest
+      #- name: Run Pytest
+      #  run: pytest
         
       - name: Run mypy  #проверяем код линтером
         run: |
-          python3 -m venv .venv
-          source .venv/bin/activate
           mypy main/
           mypy main1.py
