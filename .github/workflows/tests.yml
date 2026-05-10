@@ -18,7 +18,12 @@ jobs:
       #- name: Run Pytest
       #  run: pytest
         
-      - name: Run mypy  #проверяем код линтером
+      #- name: Run mypy
+      #  run: |
+      #    mypy main/
+      #    mypy tests/
+
+      - name:
         run: |
-          mypy main/
-          mypy main1.py
+          flake8 main/
+          flake8 tests/
