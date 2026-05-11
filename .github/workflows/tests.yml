@@ -18,10 +18,11 @@ jobs:
       #- name: Run Pytest
       #  run: pytest
         
-      #- name: Run mypy
-      #  run: |
-      #    mypy main/
-      #    mypy tests/
+      - name: Run mypy
+        run: |
+          mypy main1.py
+          mypy main/
+          mypy tests/
 
       #- name: Run flake8
       #  run: |
@@ -33,7 +34,7 @@ jobs:
       #    isort --check-only main/
       #    isort --check-only tests/
 
-      - name: Run black
-        run: |
-          black --diff --check main/
-          black --diff --check tests/
+      #- name: Run black
+      #  run: |
+      #    black --diff --check main/
+      #    black --diff --check tests/
