@@ -23,7 +23,17 @@ jobs:
       #    mypy main/
       #    mypy tests/
 
-      - name:
+      - name: Run flake8
         run: |
           flake8 main/
           flake8 tests/
+          
+      - name: Run isort
+        run: |
+          isort --check-only main/
+          isort --check-only tests/
+
+      - name: Run black
+        run: |
+          black --diff --check main/
+          black --diff --check tests/
