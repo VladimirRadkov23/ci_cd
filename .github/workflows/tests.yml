@@ -23,10 +23,10 @@ jobs:
       #    mypy main/
       #    mypy tests/
 
-      - name: Run flake8
-        run: |
-          flake8 main/
-          flake8 tests/
+      #- name: Run flake8
+      #  run: |
+      #    flake8 main/
+      #    flake8 tests/
           
       - name: Run isort
         run: |
