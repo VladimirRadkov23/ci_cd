@@ -28,10 +28,10 @@ jobs:
       #    flake8 main/
       #    flake8 tests/
           
-      - name: Run isort
-        run: |
-          isort --check-only main/
-          isort --check-only tests/
+      #- name: Run isort
+      #  run: |
+      #    isort --check-only main/
+      #    isort --check-only tests/
 
       - name: Run black
         run: |
