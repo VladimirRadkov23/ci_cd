@@ -12,11 +12,12 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
+      - name: Restore cache
+        uses: actions/cache/restore@v4
+        id: cache-restore
         with:
           path: ~/.npm
-          key: "cache-file" 
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
      
       - name: Install requirements
         run: pip install -r requirements.txt
@@ -44,3 +45,10 @@ jobs:
       #  run: |
       #    black --diff --check main/
       #    black --diff --check tests/
+
+      - name: Save cache
+        uses: actions/cache/save@v4
+        if: always() && steps.cache-restore.outputs.cache-hit != 'true'
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
