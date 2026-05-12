@@ -1,54 +1,25 @@
-name: Reusable Workflow
-on:
-  push
+# caches работа с кэшем
+name: Fourteenth Workflow
+on: workflow_dispatch
 
 jobs:
-  console-log:
+  first-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: set up python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-
-      - name: Restore cache
-        uses: actions/cache/restore@v4
-        id: cache-restore
-        with:
+      - uses: actions/checkout@v4 # копируем репозиторий
+      - name: Cache node_modules # кэщируем
+        id: cache-step # задаём id чтобы потом могли бы вывести кэш
+        uses: actions/cache@v3
+        with: # передаём путь где хранится кэш
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-     
-      - name: Install requirements
-        run: pip install -r requirements.txt
+          #key: "cache-file"   # имя файла / статический ключ по которому будет искаться этот кэш
+          key: ${{ runner.os }}-cache-file-${{ hashFiles('**/package-lock.json') }} # лучше генерировать динамический ключ
+          restore-keys: | # будет искаться если другой не найдётся
+            ${{ runner.os }}-cache-file-
+            ${{ runner.os }}-
 
-      #- name: Run Pytest
-      #  run: pytest
-        
-      - name: Run mypy
-        run: |
-          mypy main1.py
-          mypy main/
-          mypy tests/
+      - name: Display Cache # отображаем нужно кэш по его id
+        run: echo '${{ tojson(steps.cache-step.outputs) }}'
 
-      #- name: Run flake8
-      #  run: |
-      #    flake8 main/
-      #    flake8 tests/
-          
-      #- name: Run isort
-      #  run: |
-      #    isort --check-only main/
-      #    isort --check-only tests/
-
-      #- name: Run black
-      #  run: |
-      #    black --diff --check main/
-      #    black --diff --check tests/
-
-      - name: Save cache
-        uses: actions/cache/save@v4
-        if: always() && steps.cache-restore.outputs.cache-hit != 'true'
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: Install node_modules # устанавливаем зависимости
+        run: npm install
