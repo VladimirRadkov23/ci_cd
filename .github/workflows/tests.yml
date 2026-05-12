@@ -1,6 +1,6 @@
 name: Reusable Workflow
 on:
-  workflow_call:     # запускается другим workflow
+  workflow_dispatch
 
 jobs:
   console-log:
