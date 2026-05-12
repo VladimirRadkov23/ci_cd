@@ -12,11 +12,8 @@ jobs:
         uses: actions/cache@v3
         with: # передаём путь где хранится кэш
           path: ~/.npm
-          #key: "cache-file"   # имя файла / статический ключ по которому будет искаться этот кэш
-          key: ${{ runner.os }}-cache-file-${{ hashFiles('**/package-lock.json') }} # лучше генерировать динамический ключ
-          restore-keys: | # будет искаться если другой не найдётся
-            ${{ runner.os }}-cache-file-
-            ${{ runner.os }}-
+          key: "cache-file"   # имя файла / статический ключ по которому будет искаться этот кэш
+
 
       - name: Display Cache # отображаем нужно кэш по его id
         run: echo '${{ tojson(steps.cache-step.outputs) }}'
