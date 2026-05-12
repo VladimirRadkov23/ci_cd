@@ -20,6 +20,3 @@ jobs:
 
       - name: Display Cache # отображаем нужно кэш по его id
         run: echo '${{ tojson(steps.cache-step.outputs) }}'
-
-      - name: Install node_modules # устанавливаем зависимости
-        run: npm install
