@@ -6,14 +6,25 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 # копируем репозиторий
-      - name: Cache node_modules # кэщируем
-        id: cache-step # задаём id чтобы потом могли бы вывести кэш
-        uses: actions/cache@v3
-        with: # передаём путь где хранится кэш
+      - uses: actions/checkout@v4
+    
+      # 1. Пытаемся восстановить кэш
+      - name: Restore cache
+        uses: actions/cache/restore@v4
+        id: cache-restore
+        with:
           path: ~/.npm
-          key: "cache-file"   # имя файла / статический ключ по которому будет искаться этот кэш
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+    
+      # 2. Устанавливаем зависимости
+      - name: Install dependencies
+        run: echo "Test"
+    
+      # 4. Сохраняем кэш в любом случае, если его не было в системе
+      - name: Save cache
+        uses: actions/cache/save@v4
+        if: always() && steps.cache-restore.outputs.cache-hit != 'true'
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
-
-      - name: Display Cache # отображаем нужно кэш по его id
-        run: echo '${{ tojson(steps.cache-step.outputs) }}'
