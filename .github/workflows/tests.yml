@@ -1,6 +1,6 @@
 name: Reusable Workflow
 on:
-  workflow_dispatch
+  push
 
 jobs:
   console-log:
