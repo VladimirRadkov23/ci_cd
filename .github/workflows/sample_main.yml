@@ -1,14 +1,7 @@
 # работа с шаблоном
 
 name: Seventeenth Workflow
-on:
-  workflow_dispatch:
-      inputs:
-        title:
-          description: " Custom Title"
-          type: string
-          default: "Testing text title"
-          required: false
+on: push
 
 jobs:
   call-workflow:    # открываем другой из этого репозитория
