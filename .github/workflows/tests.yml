@@ -7,12 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: mkdir -p cache/pip
+      
       - name: set up python
         uses: actions/setup-python@v5
         with:
           python-version: "3.13"
 
-      - name: Cache pip dependencies
+      - name: Cache pip
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
