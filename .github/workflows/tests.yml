@@ -24,10 +24,3 @@ jobs:
       #  run: |
       #    flake8 main/
       #    flake8 tests/
-
-      - name: Save cache
-        uses: actions/cache/save@v4
-        if: always() && steps.cache-restore.outputs.cache-hit != 'true'
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
