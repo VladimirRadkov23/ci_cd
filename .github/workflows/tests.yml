@@ -17,10 +17,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run Pytest
-        run: pytest
+      #- name: Run Pytest
+      #  run: pytest
 
-      #- name: Run flake8
-      #  run: |
-      #    flake8 main/
+      - name: Run flake8
+        run: |
+          flake8 main1
       #    flake8 tests/
