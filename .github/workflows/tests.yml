@@ -12,14 +12,11 @@ jobs:
         with:
           python-version: "3.11"
 
-      # 1. Записываем путь к кэшу прямо в GITHUB_ENV
       - name: Get pip cache dir
         run: |
           echo "PIP_CACHE_DIR=$(pip cache dir)" >> $GITHUB_ENV
-          # Сразу создаем уникальный ключ и тоже кладем в ENV
           echo "PIP_CACHE_KEY=${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}" >> $GITHUB_ENV
   
-      # 2. Восстанавливаем, используя переменные окружения
       - name: Restore pip cache
         uses: actions/cache/restore@v4
         with:
@@ -28,7 +25,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
   
-      # 3. Ваши шаги (установка и тесты)
       - name: Install dependencies
         run: pip install -r requirements.txt
 
@@ -36,10 +32,9 @@ jobs:
         run: |
           flake8 main1.py     
   
-      # 4. Жесткое сохранение (теперь ключ и путь точно подтянутся)
       - name: Save pip cache
         uses: actions/cache/save@v4
-        if: always() # Выполняется при любом исходе
+        if: always()
         with:
           path: ${{ env.PIP_CACHE_DIR }}
           key: ${{ env.PIP_CACHE_KEY }}
