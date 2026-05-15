@@ -16,16 +16,17 @@ jobs:
         id: pip-cache
         run: |
           echo "dir=$(pip cache dir)" >> $GITHUB_OUTPUT
-
-      - name: Cache pip
+  
+      - name: Pip cache
         uses: actions/cache@v4
         with:
-          path: ${{ steps.pip-cache.outputs.dir }} # ~/.cache/pip
+          path: ${{ steps.pip-cache.outputs.dir }}
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-          save-always: true
-                
+          save-always: true # <-- Кэш сохранится, даже если тесты упадут
+
+      # 3. Устанавливаем зависимости
       - name: Install dependencies
         run: pip install -r requirements.txt
 
