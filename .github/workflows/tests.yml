@@ -15,7 +15,7 @@ jobs:
       - name: Cache pip packages
         uses: actions/cache@v4
         with:
-          path: ~/.npm
+          path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
@@ -23,6 +23,7 @@ jobs:
                 
       - name: Install dependencies
         run: |
+          mkdir -p ~/.cache/pip 
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
@@ -32,11 +33,3 @@ jobs:
       - name: Run flake8
         run: |
           flake8 main1.py
-      #    flake8 tests/
-
-      - name: Save cache
-        uses: actions/cache/save@v4
-        if: always() && steps.cache-restore.outputs.cache-hit != 'true'
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
